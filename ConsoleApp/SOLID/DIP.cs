@@ -34,7 +34,7 @@ namespace ConsoleApp.SOLID.D
 
         public void Send()
         {
-            SendMMS()
+            SendMMS();
         }
 
         public void SendMMS()

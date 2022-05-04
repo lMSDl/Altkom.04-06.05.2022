@@ -8,6 +8,11 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
+            DesignPatterns.Creational.Builder.Client.Execute();
+        }
+
+        private static void LSP()
+        {
             Rectangle shape = new Square();
 
             var a = 4;

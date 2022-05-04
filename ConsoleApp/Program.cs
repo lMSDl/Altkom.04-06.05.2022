@@ -17,7 +17,6 @@ namespace ConsoleApp
 
             Console.WriteLine($"{a}*{b}=");
             ShowArea(shape);
-
         }
 
         static void Fill(Rectangle rectangle, int a, int b)

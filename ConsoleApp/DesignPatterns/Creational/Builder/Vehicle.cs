@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.DesignPatterns.Creational.Builder
 {
-    public class Vehicle
+    public class Vehicle : ICloneable
     {
         public Vehicle()
         {
@@ -42,6 +42,11 @@ namespace ConsoleApp.DesignPatterns.Creational.Builder
         public int Doors { get; set; }
         public int? TrunkCapacity { get; set; }
         public int? EnginePower { get; set; }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
 
         public override string ToString()
         {

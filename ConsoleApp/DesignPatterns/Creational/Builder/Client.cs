@@ -23,6 +23,10 @@ namespace ConsoleApp.DesignPatterns.Creational.Builder
 
             Console.WriteLine(vehicle);
 
+            builder.SetDoors(2);
+            vehicle = builder.Build();
+            Console.WriteLine(vehicle);
+
             vehicle = new VehicleBuilder()
                         .SetWheels(4)
                         .SetSeats(5)

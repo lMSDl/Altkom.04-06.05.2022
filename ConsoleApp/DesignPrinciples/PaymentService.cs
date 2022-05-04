@@ -10,35 +10,13 @@ namespace DesignPrinciples
         public bool Charge(int id, float amount)
         {
             var paymentAccount = FindById(id);
-            if (paymentAccount == null)
-            {
-                return false;
-            }
-
-            if (GetBalance(id) < amount)
-            {
-                return false;
-            }
-
-            paymentAccount.Outcome += amount;
-            return true;
+            return paymentAccount?.Charge(amount) ?? false;
         }
 
         public void Fund(int id, float amount)
         {
             var paymentAccount = FindById(id);
-            if (paymentAccount == null)
-            {
-                return;
-            }
-
-            paymentAccount.Income += amount;
-        }
-
-        public float? GetBalance(int id)
-        {
-            var paymentAccount = FindById(id);
-            return paymentAccount?.Income - paymentAccount?.Outcome;
+            paymentAccount?.Fund(amount);
         }
 
         private PaymentAccount FindById(int id)

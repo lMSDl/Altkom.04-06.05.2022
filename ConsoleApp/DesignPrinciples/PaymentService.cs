@@ -19,36 +19,41 @@ namespace DesignPrinciples
 
         public bool Charge(int id, float amount)
         {
-            var paumentAccount = PaymentAccounts.SingleOrDefault(x => x.Id == id);
-            if (paumentAccount == null)
+            var paymentAccount = FindById(id);
+            if (paymentAccount == null)
             {
                 return false;
             }
 
-            if (paumentAccount.Income - paumentAccount.Outcome + paumentAccount.AllowedDebit < amount)
+            if (GetBalance(id) < amount)
             {
                 return false;
             }
 
-            paumentAccount.Outcome += amount;
+            paymentAccount.Outcome += amount;
             return true;
         }
 
         public void Fund(int id, float amount)
         {
-            var paumentAccount = PaymentAccounts.Where(x => x.Id == id).SingleOrDefault();
-            if (paumentAccount == null)
+            var paymentAccount = FindById(id);
+            if (paymentAccount == null)
             {
                 return;
             }
 
-            paumentAccount.Income += amount;
+            paymentAccount.Income += amount;
         }
 
         public float? GetBalance(int id)
         {
-            var paymentAccount = PaymentAccounts.Where(x => x.Id == id).SingleOrDefault();
+            var paymentAccount = FindById(id);
             return paymentAccount?.Income - paymentAccount?.Outcome;
+        }
+
+        private PaymentAccount FindById(int id)
+        {
+            return PaymentAccounts.SingleOrDefault(x => x.Id == id);
         }
     }
 }

@@ -10,6 +10,17 @@ namespace ConsoleApp.DesignPatterns.Creational.FactoryMethod
     {
         private readonly Dictionary<string, IElevatorOperation> _operations = new Dictionary<string, IElevatorOperation>();
 
+        public Elevator()
+        {
+            var type = typeof(IElevatorOperation);
+            _operations = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .Where(x => !x.IsInterface)
+                .Where(x => type.IsAssignableFrom(x))
+                .Select(x => (IElevatorOperation)Activator.CreateInstance(x))
+                .ToDictionary(x => x.GetType().Name.Substring(nameof(Elevator).Length));
+        }
+
         public void Execute(string action, int floor)
         {
             Execute(CreateOperation(action), floor);
@@ -21,24 +32,27 @@ namespace ConsoleApp.DesignPatterns.Creational.FactoryMethod
 
         public IElevatorOperation CreateOperation(string action)
         {
-            if(_operations.TryGetValue(action, out var elevatorOperation))
-            {
-                return elevatorOperation;
-            }
+            return (IElevatorOperation)Activator.CreateInstance(Type.GetType($"{GetType().Namespace}.{nameof(Elevator)}{action}"));
 
-            switch (action)
-            {
-                case "Down":
-                    elevatorOperation = new ElevatorDown();
-                    break;
-                case "Up":
-                    elevatorOperation = new ElevatorUp();
-                    break;
-            }
 
-            _operations[action] = elevatorOperation;
+            //if (_operations.TryGetValue(action, out var elevatorOperation))
+            //{
+            //    return elevatorOperation;
+            //}
 
-            return elevatorOperation;
+            //switch (action)
+            //{
+            //    case "Down":
+            //        elevatorOperation = new ElevatorDown();
+            //        break;
+            //    case "Up":
+            //        elevatorOperation = new ElevatorUp();
+            //        break;
+            //}
+
+            //_operations[action] = elevatorOperation;
+
+            //return elevatorOperation;
         }
     }
 }

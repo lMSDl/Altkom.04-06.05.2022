@@ -17,7 +17,7 @@ namespace ConsoleApp.DesignPatterns.Creational.FactoryMethod
             elevator.Execute(action, floor);
 
 
-             action = "Up";
+             action = "GoTo";
              floor = 2;
             elevator.Execute(action, floor);
         }

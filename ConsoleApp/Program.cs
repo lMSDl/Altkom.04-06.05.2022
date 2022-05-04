@@ -8,7 +8,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            DesignPatterns.Creational.Prototype.Client.Execute();
+            DesignPatterns.Creational.Singleton.Client.Execute();
         }
 
         private static void LSP()

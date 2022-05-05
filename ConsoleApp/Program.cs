@@ -8,7 +8,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            DesignPatterns.Creational.ObjectPool.Client.Execute();
+            DesignPatterns.Structural.Adapter.I.Client.Execute();
         }
 
         private static void LSP()

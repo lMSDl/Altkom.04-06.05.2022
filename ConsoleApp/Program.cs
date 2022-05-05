@@ -8,7 +8,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            DesignPatterns.Structural.Proxy.Client.Execute();
+            DesignPatterns.Behavioral.ChainOfResponsibility.II.Client.Execute();
         }
 
         private static void LSP()

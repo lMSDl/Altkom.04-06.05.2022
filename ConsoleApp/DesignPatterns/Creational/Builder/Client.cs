@@ -27,12 +27,19 @@ namespace ConsoleApp.DesignPatterns.Creational.Builder
             vehicle = builder.Build();
             Console.WriteLine(vehicle);
 
-            vehicle = new VehicleBuilder()
-                        .SetWheels(4)
-                        .SetSeats(5)
-                        .SetDoors(4)
-                        .SetEnginePower(100)
-                        .SetTrunkCapacity(500)
+            vehicle = new VehicleBuilderFacade()
+                        .Components
+                            .SetWheels(4)
+                            .SetSeats(5)
+                         .Info
+                            .SetManufacturer("Altkom")
+                         .Components
+                            .SetDoors(4)
+                            .SetEnginePower(100)
+                            .SetTrunkCapacity(500)
+                         .Info
+                            .SetModel("Superbil")
+                            .SetDate(new DateTime(1990, 12, 2))
                         .Build();
 
             Console.WriteLine(vehicle);

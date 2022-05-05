@@ -6,23 +6,21 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.DesignPatterns.Creational.Builder
 {
-    public class VehicleBuilder
+    public class VehicleBuilder : VehicleBuilderFacade
     {
-        private Vehicle Vehicle { get; set; }
-
-        public VehicleBuilder()
+        public VehicleBuilder() : this(new Vehicle())
         {
-            Vehicle = new Vehicle();
         }
+
+        public VehicleBuilder(Vehicle vehicle) : base(vehicle)
+        {
+        }
+
         public VehicleBuilder SetWheels(int value) { Vehicle.Wheels = value; return this; }
         public VehicleBuilder SetSeats(int value) { Vehicle.Seats = value; return this; }
         public VehicleBuilder SetDoors(int value) { Vehicle.Doors = value; return this; }
         public VehicleBuilder SetTrunkCapacity(int? value) { Vehicle.TrunkCapacity = value; return this; }
         public VehicleBuilder SetEnginePower(int? value) { Vehicle.EnginePower = value; return this; }
 
-        public Vehicle Build()
-        {
-            return (Vehicle)Vehicle.Clone();
-        }
     }
 }

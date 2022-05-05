@@ -8,7 +8,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            DesignPatterns.Structural.Adapter.I.Client.Execute();
+            DesignPatterns.Structural.Bridge.II.Client.Execute();
         }
 
         private static void LSP()

@@ -9,12 +9,13 @@ namespace ConsoleApp.DesignPatterns.Behavioral.Observer
 {
     public class OddSubscriber : Subscriber
     {
-        public override void OnNext(int value)
+        public async override void OnNext(int value)
         {
+            await Task.Yield();
             if(value % 2 != 0)
             {
-                Console.WriteLine("OddSubscriber reaguje na dane");
                 Thread.Sleep(5000);
+                Console.WriteLine("OddSubscriber reaguje na dane");
             }
         }
     }

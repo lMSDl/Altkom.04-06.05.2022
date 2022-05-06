@@ -24,7 +24,7 @@ namespace ConsoleApp.DesignPatterns.Behavioral.Observer
 
             int value = new Random().Next(-1, 10);
             Console.WriteLine($"Wynik obliczeń: {value}");
-            _ = Task.Run(() => Notify(value));
+            Notify(value);
         }
 
         private void Notify(int value)

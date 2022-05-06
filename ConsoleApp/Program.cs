@@ -8,7 +8,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            DesignPatterns.Behavioral.Visitor.II.Client.Execute();
+            DesignPatterns.Behavioral.NullObject.Client.Execute();
         }
 
         private static void LSP()
